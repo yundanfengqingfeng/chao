@@ -7,7 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ChaoSpringbootApplication {
@@ -27,15 +31,15 @@ public class ChaoSpringbootApplication {
 		FastJsonHttpMessageConverter  fastJsonConverter = new FastJsonHttpMessageConverter();
 		//2.添加fastjson的配置信息，比如是否要格式化返回的json数据
 		FastJsonConfig fastJsonConfig = new FastJsonConfig();
-
 		fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+		/*设置返回的Json数据中文不乱码*/
+		List<MediaType> fastMediaTypes = new ArrayList<>();
+		fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+		fastJsonConverter.setSupportedMediaTypes(fastMediaTypes);
 		//3.在convert中添加配置信息
 		fastJsonConverter.setFastJsonConfig(fastJsonConfig);
-
 		HttpMessageConverter<?> converter = fastJsonConverter;
-
 		return new HttpMessageConverters(converter);
-
 	}
 
 }

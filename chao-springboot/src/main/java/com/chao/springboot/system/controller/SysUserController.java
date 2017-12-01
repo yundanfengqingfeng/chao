@@ -28,10 +28,10 @@ public class SysUserController {
     public SysUser saveSysUser(){
         log.info("进入方法saveSysUser()........");
         SysUser sysUser = new SysUser();
-        sysUser.setUserCode("00000");
-        sysUser.setUserName("超级管理员");
+        sysUser.setUserCode("00013");
+        sysUser.setUserName("普通管理员");
         sysUser.setPassword(Md5Util.encode("123456"));
-        sysUser.setAddress("中国四川");
+        sysUser.setAddress("中国天帝城");
         sysUser.setAge(18);
         sysUser.setEmail("316448421@qq.com");
         sysUser.setMobile("13750508384");
