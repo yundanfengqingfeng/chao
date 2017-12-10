@@ -26,7 +26,9 @@ public class GlobalDefaultExceptionHandler {
     @ResponseBody
     public String defaultExceptionHandler(HttpServletRequest request, Exception e){
 
-        log.info("进入了错误拦截方法defaultExceptionHandler().................");
+
+        log.error("错误是：",e);
+        log.info("进入了错误拦截方法defaultExceptionHandler().............错误是={}....",e.getMessage());
 
         return "对不起，服务正忙，请稍后再尝试!";
     }

@@ -53,5 +53,11 @@ public class SysUserController {
         model.addAttribute("sysUsers",sysUser);
         return "index";
     }
+    @RequestMapping(value = "/loginIndex",method = RequestMethod.GET)
+    public String loginIndex(){
+        log.info("进入了转向登录页的方法loginInde()....");
+
+        return "/pc/login";
+    }
 
 }

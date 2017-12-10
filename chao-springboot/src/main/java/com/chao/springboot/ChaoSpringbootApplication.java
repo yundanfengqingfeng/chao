@@ -28,11 +28,11 @@ public class ChaoSpringbootApplication {
 	@Bean  //使用@Bean注入fastJsonHttpMessageConvert
 	public HttpMessageConverters fastJsonHttpMessageConverters(){
 		//1.需要定义一个Convert转换消息的对象
-		FastJsonHttpMessageConverter  fastJsonConverter = new FastJsonHttpMessageConverter();
+		FastJsonHttpMessageConverter fastJsonConverter = new FastJsonHttpMessageConverter();
 		//2.添加fastjson的配置信息，比如是否要格式化返回的json数据
 		FastJsonConfig fastJsonConfig = new FastJsonConfig();
 		fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
-		/*设置返回的Json数据中文不乱码*/
+		//设置返回的Json数据中文不乱码
 		List<MediaType> fastMediaTypes = new ArrayList<>();
 		fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
 		fastJsonConverter.setSupportedMediaTypes(fastMediaTypes);
