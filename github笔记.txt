@@ -1,0 +1,34 @@
+﻿echo "# chao" >> README.md
+git init
+touch README.md
+git add README.md
+git add .      (添加当前目录的所有文件到git版本控制，注意“.”代表当前目录下全部文件，也可以替换成某个文件路径)
+git commit -m 'first commit'      (提交到本地仓库     引号的内容可以自定义，用于描述提交信息)
+git remote add origin git@github.com:yundanfengqingfeng/chao.git
+git push -u origin master
+
+
+
+1、查看远程库
+git remote -v
+
+2、从远程的oringin仓库分支下载最新版到本地
+git fetch origin master
+
+3、比较本地的仓库和远程参考(比较master分支与temp分支的不同)
+git diff temp
+
+4、合并temp分支到master分支
+git merge temp
+
+5、删除分支
+git branch -d temp
+
+6、git pull 强制覆盖本地文件
+
+git fetch --all  
+git reset --hard origin/master 
+git pull
+
+
+
