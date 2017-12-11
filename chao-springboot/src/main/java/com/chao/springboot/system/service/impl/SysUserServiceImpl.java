@@ -28,6 +28,12 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
+    public SysUser findByUserCode(String userCode) {
+        log.info("进入了SysUserService.findByUserCode().....userCode={}",userCode);
+        return sysUserRepository.findByUserCode(userCode);
+    }
+
+    @Override
     public boolean exists(int id) {
         return sysUserRepository.exists(id);
     }
@@ -56,4 +62,5 @@ public class SysUserServiceImpl implements SysUserService {
     public void deleteAll() {
         sysUserRepository.deleteAll();
     }
+
 }

@@ -3,11 +3,13 @@ package com.chao.springboot.system.bean;
 import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "t_sys_user")
 @Entity
-public class SysUser {
+public class SysUser implements Serializable {
 
     @Id @GeneratedValue
     private Long id;
@@ -17,6 +19,9 @@ public class SysUser {
 
     @Column(name="user_name",columnDefinition="varchar(128) not null COMMENT '用户名称'")
     private String userName;
+
+    @Column(name="salt",columnDefinition="varchar(128) COMMENT '加密密码的盐'")
+    private String salt;
 
     @Column(name="password",columnDefinition="varchar(128) not null COMMENT '用户登录的密码'")
     private String password;
@@ -56,6 +61,10 @@ public class SysUser {
     @Column(name = "mobile", nullable = true, columnDefinition="varchar(20) COMMENT '电话'")
     private String mobile;
 
+    @ManyToMany(fetch= FetchType.EAGER)//立即从数据库中进行加载数据;
+    @JoinTable(name = "T_SysUserRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns ={@JoinColumn(name = "roleId") })
+    private List<SysRole> roleList;// 一个用户具有多个角色
+
     public Long getId() {
         return id;
     }
@@ -86,6 +95,14 @@ public class SysUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public String getAddress() {
@@ -176,12 +193,29 @@ public class SysUser {
         this.mobile = mobile;
     }
 
+    public List<SysRole> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<SysRole> roleList) {
+        this.roleList = roleList;
+    }
+
+    /**
+     * 密码盐.
+     * @return
+     */
+    public String getCredentialsSalt(){
+        return this.userCode+this.salt;
+    }
+
     @Override
     public String toString() {
         return "SysUser{" +
                 "id=" + id +
                 ", userCode='" + userCode + '\'' +
                 ", userName='" + userName + '\'' +
+                ", salt='" + salt + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", memo='" + memo + '\'' +
@@ -194,6 +228,7 @@ public class SysUser {
                 ", updateBy='" + updateBy + '\'' +
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
+                ", roleList=" + roleList +
                 '}';
     }
 }

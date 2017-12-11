@@ -8,6 +8,8 @@ public interface SysUserService {
 
     SysUser findOne(int id);
 
+    SysUser findByUserCode(String userCode);
+
     boolean exists(int id);
 
     Iterable<SysUser> findAll();

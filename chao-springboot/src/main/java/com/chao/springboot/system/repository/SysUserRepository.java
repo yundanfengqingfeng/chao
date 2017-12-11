@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SysUserRepository extends CrudRepository<SysUser,Integer> {
 
+
+    SysUser findByUserCode(String userCode);
 }
