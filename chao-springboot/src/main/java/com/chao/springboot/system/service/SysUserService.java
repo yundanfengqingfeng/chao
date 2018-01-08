@@ -8,7 +8,9 @@ public interface SysUserService {
 
     SysUser findOne(int id);
 
-    SysUser findByUserCode(String userCode);
+    SysUser findByUsername(String username);
+
+    SysUser findByUserCodeAndPassword(String userCode,String password);
 
     boolean exists(int id);
 

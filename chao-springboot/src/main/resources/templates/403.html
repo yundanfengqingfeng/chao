@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:include="/pc/common/head_static_css :: headStaticCss('首页')"></head>
+<head th:include="/pc/common/head_static_css :: headStaticCss('403页')"></head>
 <body>
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">访问model</h3>
+        <h3 class="panel-title">访问失败</h3>
     </div>
-
     <div>
         <div class="panel panel-primary">
-            <h3 class="panel-title">列表</h3>
+            <h3 class="panel-title">没有权限</h3>
         </div>
         <div class="panel-body">
-            <ul class="panel-group">
-                <li class="list-group-item" th:each="sysUser:${sysUsers}">
-                    <span th:text="${sysUser.userCode}"></span>
-                    <span th:text="${sysUser.userName}"></span></li>
-            </ul>
+            <h1 style="color: red">403</h1>
         </div>
     </div>
 </div>

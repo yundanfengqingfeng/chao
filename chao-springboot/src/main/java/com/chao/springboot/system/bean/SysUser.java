@@ -14,11 +14,11 @@ public class SysUser implements Serializable {
     @Id @GeneratedValue
     private Long id;
 
-    @Column(name="user_code",columnDefinition="varchar(128) not null COMMENT '用户登录编码'",unique = true)
-    private String userCode;
+    @Column(name="user_name",columnDefinition="varchar(128) not null COMMENT '用户登录编码'",unique = true)
+    private String username;
 
-    @Column(name="user_name",columnDefinition="varchar(128) not null COMMENT '用户名称'")
-    private String userName;
+    @Column(name="name",columnDefinition="varchar(128) not null COMMENT '用户名称'")
+    private String name;
 
     @Column(name="salt",columnDefinition="varchar(128) COMMENT '加密密码的盐'")
     private String salt;
@@ -73,20 +73,20 @@ public class SysUser implements Serializable {
         this.id = id;
     }
 
-    public String getUserCode() {
-        return userCode;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -204,17 +204,18 @@ public class SysUser implements Serializable {
     /**
      * 密码盐.
      * @return
+     * 重新对盐重新进行了定义，用户名+salt，这样就更加不容易被破解
      */
     public String getCredentialsSalt(){
-        return this.userCode+this.salt;
+        return this.username+this.salt;
     }
 
     @Override
     public String toString() {
         return "SysUser{" +
                 "id=" + id +
-                ", userCode='" + userCode + '\'' +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
                 ", salt='" + salt + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +

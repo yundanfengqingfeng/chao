@@ -28,9 +28,15 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public SysUser findByUserCode(String userCode) {
-        log.info("进入了SysUserService.findByUserCode().....userCode={}",userCode);
-        return sysUserRepository.findByUserCode(userCode);
+    public SysUser findByUsername(String username) {
+        log.info("进入了SysUserService.findByUsername().....username={}",username);
+        return sysUserRepository.findByUsername(username);
+    }
+
+    @Override
+    public SysUser findByUserCodeAndPassword(String userCode, String password) {
+        log.info("进入了findByUserCodeAndPassword通过账号与密码查找用户的方法findByUserCodeAndPassword()...");
+        return null;
     }
 
     @Override
